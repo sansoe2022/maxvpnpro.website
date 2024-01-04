@@ -7,23 +7,49 @@
 </head>
 <body>
 
+  <label for="userId">User ID:</label>
+  <input type="text" id="userId" placeholder="Enter user ID">
+
+  <label for="subscriptionType">Subscription Type:</label>
+  <input type="text" id="subscriptionType" placeholder="Enter subscription type">
+
+  <label for="expirationDate">Expiration Date:</label>
+  <input type="text" id="expirationDate" placeholder="Enter expiration date (YYYY-MM-DD)">
+
+  <button onclick="generateSubscriptionKey()">Generate Key</button>
+
+  <p id="generatedKey"></p>
+
   <script>
-    // Sample user subscription data
-    const subscriptionData = {
-      userId: '123456', // Unique user identifier
-      subscriptionType: 'premium',
-      expirationDate: '2024-12-31', // Subscription expiration date
-    };
+    function generateSubscriptionKey() {
+      // Get user input
+      const userId = document.getElementById('userId').value;
+      const subscriptionType = document.getElementById('subscriptionType').value;
+      const expirationDate = document.getElementById('expirationDate').value;
 
-    // Convert the subscription data to JSON
-    const jsonSubscriptionData = JSON.stringify(subscriptionData);
+      // Validate input
+      if (!userId || !subscriptionType || !expirationDate) {
+        alert('Please fill in all fields');
+        return;
+      }
 
-    // You may want to encrypt the JSON data to enhance security
-    // For simplicity, let's use a hypothetical encryption function
-    const encryptedSubscriptionData = encryptData(jsonSubscriptionData, 'yourEncryptionKey');
+      // Create subscription data object
+      const subscriptionData = {
+        userId: userId,
+        subscriptionType: subscriptionType,
+        expirationDate: expirationDate,
+      };
 
-    // Display the generated subscription key on the page
-    document.body.innerHTML += `<p>Generated Subscription Key: ${encryptedSubscriptionData}</p>`;
+      // Convert the subscription data to JSON
+      const jsonSubscriptionData = JSON.stringify(subscriptionData);
+
+      // You may want to encrypt the JSON data to enhance security
+      // For simplicity, let's use a hypothetical encryption function
+      const encryptedSubscriptionData = encryptData(jsonSubscriptionData, 'yourEncryptionKey');
+
+      // Display the generated subscription key on the page
+      document.getElementById('generatedKey').innerText = `Generated Subscription Key: ${encryptedSubscriptionData}`;
+    }
 
     // Hypothetical encryption function (replace with a secure encryption algorithm)
     function encryptData(data, encryptionKey) {
