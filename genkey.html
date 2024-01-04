@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscription Key Generator</title>
+</head>
+<body>
+
+  <script>
+    // Sample user subscription data
+    const subscriptionData = {
+      userId: '123456', // Unique user identifier
+      subscriptionType: 'premium',
+      expirationDate: '2024-12-31', // Subscription expiration date
+    };
+
+    // Convert the subscription data to JSON
+    const jsonSubscriptionData = JSON.stringify(subscriptionData);
+
+    // You may want to encrypt the JSON data to enhance security
+    // For simplicity, let's use a hypothetical encryption function
+    const encryptedSubscriptionData = encryptData(jsonSubscriptionData, 'yourEncryptionKey');
+
+    // Display the generated subscription key on the page
+    document.body.innerHTML += `<p>Generated Subscription Key: ${encryptedSubscriptionData}</p>`;
+
+    // Hypothetical encryption function (replace with a secure encryption algorithm)
+    function encryptData(data, encryptionKey) {
+      // This is a placeholder and not a secure encryption method
+      // Replace it with a proper encryption algorithm like AES
+      const encryptedData = data + encryptionKey;
+      return encryptedData;
+    }
+  </script>
+
+</body>
+</html>
